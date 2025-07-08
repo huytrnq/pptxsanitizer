@@ -12,19 +12,23 @@ logger = logging.getLogger(__name__)
 
 
 class Detection(BaseModel):
-    """A single sensitive content detection."""
+    """A single sensitive content detection with enhanced details."""
+
     original: str
-    category: str
     replacement: str
-    reason: str 
+    category: str
+    reason: str
+    sensitivity_level: str = "MEDIUM"  # HIGH/MEDIUM/LOW
 
 
 class DetectionResponse(BaseModel):
     """Response containing multiple detections."""
+
     detections: List[Detection]
 
+
 class OpenAIAnalyzer:
-    """Analyzes text content for sensitive information using OpenAI."""
+    """Analyzes text content for sensitive information using OpenAI with improved prompts."""
 
     def __init__(self, api_key: str, model="gpt-4o-mini", prompts_dir="prompts"):
         """Initialize with OpenAI API key and prompt directory."""
@@ -36,7 +40,7 @@ class OpenAIAnalyzer:
         self.model = model
         self.prompts_dir = prompts_dir
 
-        # Load prompts from files
+        # Load prompts from files or use improved defaults
         self.system_prompt = self._load_prompt("system_prompt.txt")
         self.user_prompt = self._load_prompt("user_prompt.txt")
 
@@ -47,7 +51,7 @@ class OpenAIAnalyzer:
             with open(prompt_path, "r", encoding="utf-8") as f:
                 return f.read().strip()
         except Exception as e:
-            self.logger.error("Error loading prompt %s: %s", filename, e)
+            self.logger.warning("Could not load prompt %s: %s", filename, e)
             return ""
 
     def _encode_image(self, image_path: str) -> str:
@@ -59,35 +63,35 @@ class OpenAIAnalyzer:
             self.logger.error("Error encoding image %s: %s", image_path, e)
             raise
 
-    def _prepare_system_prompt(self, slide_text: List[str]) -> str:
+    def _prepare_user_prompt(self, slide_text: List[str]) -> str:
         """Prepare the system prompt with the extracted text."""
         # Format the text content as a proper list representation
         if isinstance(slide_text, list):
             formatted_text = str(slide_text)
         else:
             formatted_text = slide_text
-        return self.system_prompt.format(extracted_text_list=formatted_text)
+        return self.user_prompt.format(extracted_text_list=formatted_text)
 
-    def analyze_slide(self, slide_text: List[str], image_path: str) -> str:
+    def analyze_slide(
+        self, slide_text: List[str], image_path: str
+    ) -> DetectionResponse:
         """Analyze a single slide's text content for sensitive information."""
         try:
-            self.logger.info(
-                "Analyzing slide with text length: %d characters", len(slide_text)
-            )
+            self.logger.info("Analyzing slide with %d text elements", len(slide_text))
 
             # Encode the image
             base64_image = self._encode_image(image_path)
 
             # Prepare the system prompt with extracted text
-            system_prompt = self._prepare_system_prompt(slide_text)
+            user_prompt = self._prepare_user_prompt(slide_text)
 
             # Create the messages for OpenAI API
             messages = [
-                {"role": "system", "content": system_prompt},
+                {"role": "system", "content": self.system_prompt},
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": self.user_prompt},
+                        {"type": "text", "text": user_prompt},
                         {
                             "type": "image_url",
                             "image_url": {
@@ -109,29 +113,63 @@ class OpenAIAnalyzer:
 
             # Parse the response
             response_content = response.choices[0].message.parsed
+
+            # Log summary of detections
+            if response_content and response_content.detections:
+                high_risk = sum(
+                    1
+                    for d in response_content.detections
+                    if d.sensitivity_level == "HIGH"
+                )
+                medium_risk = sum(
+                    1
+                    for d in response_content.detections
+                    if d.sensitivity_level == "MEDIUM"
+                )
+                low_risk = sum(
+                    1
+                    for d in response_content.detections
+                    if d.sensitivity_level == "LOW"
+                )
+
+                self.logger.info(
+                    f"Found {len(response_content.detections)} detections: "
+                    f"{high_risk} HIGH risk, {medium_risk} MEDIUM risk, {low_risk} LOW risk"
+                )
+
             return response_content
 
         except Exception as e:
             self.logger.error("Error analyzing slide: %s", e)
             raise
 
-
     def get_sanitization_summary(self, detections: List[Detection]) -> Dict[str, Any]:
         """Get a summary of sanitization results."""
         categories = {}
+        sensitivity_levels = {}
+
         for detection in detections:
+            # Count categories
             if detection.category not in categories:
                 categories[detection.category] = 0
             categories[detection.category] += 1
 
+            # Count sensitivity levels
+            if detection.sensitivity_level not in sensitivity_levels:
+                sensitivity_levels[detection.sensitivity_level] = 0
+            sensitivity_levels[detection.sensitivity_level] += 1
+
         return {
             "total_detections": len(detections),
             "categories": categories,
+            "sensitivity_levels": sensitivity_levels,
             "detections": [
                 {
-                    "original": d.text,
+                    "original": d.original,
                     "replacement": d.replacement,
                     "category": d.category,
+                    "reason": d.reason,
+                    "sensitivity_level": d.sensitivity_level,
                 }
                 for d in detections
             ],

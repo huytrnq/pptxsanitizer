@@ -1,23 +1,25 @@
-Please analyze the slide image and the extracted text elements to identify ALL sensitive information that needs sanitization according to the comprehensive rules provided.
 
-The extracted text is provided as a Python list where each element represents text found on the slide. You must examine both the visual slide and the text elements to understand context and identify sensitive content.
+Analyze this slide for sensitive information that could identify the client or reveal confidential details.
 
-CRITICAL FORMATTING REQUIREMENT:
-- ALL sanitized replacements must use square brackets: [Generic Term]
-- Example: "USPS" becomes "[Client]"
-- Example: "McKinsey & Company" becomes "[Consulting Partner]"
-- Example: "$5.2 billion" becomes "[X] billion"
+SLIDE DATA:
+- Image: Provided above
+- Extracted Text: {extracted_text_list}
 
-Return your response as a JSON object:
-- "original": the exact text from the list that needs to be replaced
-- "replacement": the sanitized version using square brackets
-- "category": the type of sensitive information
-- "reason": brief explanation of why this needs sanitization
+TASK: Identify ALL sensitive content and provide replacements.
 
-Be thorough and identify ALL sensitive content including:
-- Company names, subsidiaries, partners, vendors
-- Personal names, titles, contact information
-- Financial figures, metrics, percentages
-- Product names, internal codes, project names
-- Legislation names, regulatory references
-- Any content that could identify the client or reveal confidential information
+FOCUS AREAS:
+• Company/entity names (clients, partners, vendors, competitors)
+• Financial figures that reveal scale (preserve general percentages)
+• Products, brands, solutions, internal methodologies  
+• Company-specific acronyms (preserve standard business terms)
+• Geographic/market context that narrows identity
+• Contractor names, team members, collaboration history
+
+OUTPUT FORMAT (JSON):
+- "original": exact text to replace
+- "replacement": sanitized version with [brackets]
+- "category": type (company_name, financial_data, client_solution, etc.)
+- "reason": why this identifies the client
+- "sensitivity_level": HIGH/MEDIUM/LOW
+
+Be thorough - identify everything that could compromise anonymization.

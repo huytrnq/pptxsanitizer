@@ -1,45 +1,218 @@
 {
   "original_file": "data/test.pptx",
   "sanitized_file": "data/Take-home_sanitized.pptx",
-  "total_slides": 2,
-  "total_detections": 5,
+  "total_slides": 4,
+  "total_detections": 28,
+  "total_replacements": 21,
   "categories_summary": {
-    "Company Name": 4,
-    "Date": 1
+    "company_name": 11,
+    "financial_data": 11,
+    "industry_regulation": 2,
+    "client_solution": 4
   },
   "detections_by_slide": {
     "1": [
       {
         "original": "USPS Future Business Model",
         "replacement": "[Client] Future Business Model",
-        "category": "Company Name",
-        "reason": "Identifies a specific client organization."
+        "category": "company_name",
+        "reason": "Identifies the client organization directly by name.",
+        "sensitivity_level": "HIGH"
       },
       {
         "original": "UNITED STATES POSTAL SERVICE",
         "replacement": "[Client]",
-        "category": "Company Name",
-        "reason": "Identifies a specific government agency."
-      },
-      {
-        "original": "McKinsey & Company",
-        "replacement": "[Consulting Partner]",
-        "category": "Company Name",
-        "reason": "Identifies a specific consulting firm."
+        "category": "company_name",
+        "reason": "Identifies the client organization directly by name.",
+        "sensitivity_level": "HIGH"
       },
       {
         "original": "March 2, 2010",
         "replacement": "[Date]",
-        "category": "Date",
-        "reason": "Specific date that may relate to confidential information."
+        "category": "financial_data",
+        "reason": "Specific date could identify timing of strategies or initiatives related to the client.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "McKinsey&Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies the consulting partner involved in the project.",
+        "sensitivity_level": "MEDIUM"
       }
     ],
     "2": [
       {
         "original": "McKinsey & Company",
         "replacement": "[Consulting Partner]",
-        "category": "Company Name",
-        "reason": "This is a specific company name that identifies the consulting firm involved."
+        "category": "company_name",
+        "reason": "Identifies the consulting firm involved with the client.",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "3": [
+      {
+        "original": "USPS",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies the specific client organization involved.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$ billions",
+        "replacement": "[Y]B",
+        "category": "financial_data",
+        "reason": "Reveals financial scale that could identify the client.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Postal Act 2006",
+        "replacement": "[Industry Regulation]",
+        "category": "industry_regulation",
+        "reason": "Specific legislation that could narrow down the client's identity.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "RHB pre-funding, $ billions",
+        "replacement": "[X]B",
+        "category": "financial_data",
+        "reason": "Financial figure that could identify the scale of operations.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "E-diversion of First-Class Mail",
+        "replacement": "[Revenue Decline Factor]",
+        "category": "client_solution",
+        "reason": "Specific operational detail that could identify client strategies.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Down-trading from First-Class to Standard Mail",
+        "replacement": "[Revenue Decline Factor]",
+        "category": "client_solution",
+        "reason": "Specific operational detail that could identify client strategies.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Losses of advertising mail due to the recession",
+        "replacement": "[Revenue Decline Factor]",
+        "category": "client_solution",
+        "reason": "Specific operational detail that could identify client strategies.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "RHB pre-funding requirement introduced by the PAEA",
+        "replacement": "[Industry Regulation]",
+        "category": "industry_regulation",
+        "reason": "Specific regulation that could narrow down the client's identity.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "No rate increase 2003-2006",
+        "replacement": "[Historical Context]",
+        "category": "client_solution",
+        "reason": "Specific historical detail that could identify client operations.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "SOURCE: USPS; P.L. 109-435 (PAEA)",
+        "replacement": "SOURCE: [Client]; [Regulatory Body]",
+        "category": "company_name",
+        "reason": "Identifies the client and specific regulatory body involved.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies the consulting partner involved in the analysis.",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "4": [
+      {
+        "original": "RHB pre-funding requirements",
+        "replacement": "[Funding Requirement]",
+        "category": "company_name",
+        "reason": "Identifies specific funding requirements related to a known entity.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "RHB deferral",
+        "replacement": "[Funding Deferral]",
+        "category": "company_name",
+        "reason": "Identifies specific financial terms related to a known entity.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "FY2006 Net income",
+        "replacement": "[Fiscal Year] Net income",
+        "category": "financial_data",
+        "reason": "Identifies specific financial performance data for a particular year.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "FY2009 Net income",
+        "replacement": "[Fiscal Year] Net income",
+        "category": "financial_data",
+        "reason": "Identifies specific financial performance data for a particular year.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "15.8",
+        "replacement": "[X]",
+        "category": "financial_data",
+        "reason": "Specific financial figure that could identify scale.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "5.5",
+        "replacement": "[X]",
+        "category": "financial_data",
+        "reason": "Specific financial figure that could identify scale.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "12.6",
+        "replacement": "[X]",
+        "category": "financial_data",
+        "reason": "Specific financial figure that could identify scale.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "4.0",
+        "replacement": "[X]",
+        "category": "financial_data",
+        "reason": "Specific financial figure that could identify scale.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "-3.8",
+        "replacement": "[X]",
+        "category": "financial_data",
+        "reason": "Specific financial figure that could identify scale.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Volume declines of 17%, driven by",
+        "replacement": "Volume declines of [X]%, driven by",
+        "category": "financial_data",
+        "reason": "Specific percentage that could identify client performance.",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "SOURCE: USPS 2006 Annual Report; USPS 2010 Budget",
+        "replacement": "SOURCE: [Client] 2006 Annual Report; [Client] 2010 Budget",
+        "category": "company_name",
+        "reason": "Identifies specific client documents and reports.",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm involved.",
+        "sensitivity_level": "MEDIUM"
       }
     ]
   }
