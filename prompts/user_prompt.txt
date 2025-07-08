@@ -1,0 +1,23 @@
+Please analyze the slide image and the extracted text elements to identify ALL sensitive information that needs sanitization according to the comprehensive rules provided.
+
+The extracted text is provided as a Python list where each element represents text found on the slide. You must examine both the visual slide and the text elements to understand context and identify sensitive content.
+
+CRITICAL FORMATTING REQUIREMENT:
+- ALL sanitized replacements must use square brackets: [Generic Term]
+- Example: "USPS" becomes "[Client]"
+- Example: "McKinsey & Company" becomes "[Consulting Partner]"
+- Example: "$5.2 billion" becomes "[X] billion"
+
+Return your response as a JSON object:
+- "original": the exact text from the list that needs to be replaced
+- "replacement": the sanitized version using square brackets
+- "category": the type of sensitive information
+- "reason": brief explanation of why this needs sanitization
+
+Be thorough and identify ALL sensitive content including:
+- Company names, subsidiaries, partners, vendors
+- Personal names, titles, contact information
+- Financial figures, metrics, percentages
+- Product names, internal codes, project names
+- Legislation names, regulatory references
+- Any content that could identify the client or reveal confidential information

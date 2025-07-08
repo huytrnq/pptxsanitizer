@@ -1,0 +1,46 @@
+{
+  "original_file": "data/test.pptx",
+  "sanitized_file": "data/Take-home_sanitized.pptx",
+  "total_slides": 2,
+  "total_detections": 5,
+  "categories_summary": {
+    "Company Name": 4,
+    "Date": 1
+  },
+  "detections_by_slide": {
+    "1": [
+      {
+        "original": "USPS Future Business Model",
+        "replacement": "[Client] Future Business Model",
+        "category": "Company Name",
+        "reason": "Identifies a specific client organization."
+      },
+      {
+        "original": "UNITED STATES POSTAL SERVICE",
+        "replacement": "[Client]",
+        "category": "Company Name",
+        "reason": "Identifies a specific government agency."
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "Company Name",
+        "reason": "Identifies a specific consulting firm."
+      },
+      {
+        "original": "March 2, 2010",
+        "replacement": "[Date]",
+        "category": "Date",
+        "reason": "Specific date that may relate to confidential information."
+      }
+    ],
+    "2": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "Company Name",
+        "reason": "This is a specific company name that identifies the consulting firm involved."
+      }
+    ]
+  }
+}
