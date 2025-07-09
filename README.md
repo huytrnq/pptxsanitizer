@@ -9,7 +9,7 @@ An AI-powered tool for automatically detecting and sanitizing sensitive informat
 - **Detailed Reporting**: Generates comprehensive reports of all changes made
 
 ## 📋 Requirements
-
+- uv package and project manager
 - Python 3.12 or higher
 - OpenAI API key
 - PowerPoint files (.pptx format)
@@ -33,24 +33,28 @@ An AI-powered tool for automatically detecting and sanitizing sensitive informat
 2. **Set up your OpenAI API key:**
 
    ```bash
-   # Windows PowerShell
-   $env:OPENAI_API_KEY = "your-api-key-here"
-   
-   # Linux/Mac
    export OPENAI_API_KEY="your-api-key-here"
    ```
 
 ## 🚀 Quick Start
 
-1. **Place your PowerPoint file** in the `data/` directory (default: `Take-home.pptx`)
+1. Convert your PowerPoint file to png images (Optional as the pngs are generated in the data/pngs directory):
+   If you want to convert your PowerPoint slides to images, you can use `libreoffice` and `imagemagick`. Make sure you have them installed:
+   ```bash
+   libreoffice --headless --convert-to pdf data/Take-home.pptx --outdir data/
+   sudo apt install imagemagick
+   mkdir -p data/pngs
+   convert -density 300 data/Take-home.pdf -scene 1 -quality 90 data/pngs/slide-%02d.png
+   ```
+2. **Place your PowerPoint file** in the `data/` directory (default: `Take-home.pptx`)
 
-2. **Run the sanitizer:**
+3. **Run the sanitizer:**
 
    ```bash
    python main.py
    ```
 
-3. **Find your sanitized file** in the `data/` directory with `_sanitized` suffix
+4. **Find your sanitized file** in the `data/` directory with `_sanitized` suffix
 
 ## 📁 Project Structure
 
@@ -82,11 +86,59 @@ pptxsanitizer/
 
 ## ⚙️ Configuration
 
-The tool uses environment variables and configuration files:
+The tool uses a centralized configuration system managed by the `Config` class in `config/__init__.py`. This provides default settings and environment-based configuration for all components.
+
+### Configuration Settings
+
+The `Config` class includes the following default settings:
+
+**File Paths:**
+
+- `DATA_DIR`: `data/` - Directory for input/output files
+- `IMAGES_DIR`: `data/pngs/` - Directory for slide images
+- `PROMPTS_DIR`: `config/prompts/` - Directory for AI prompt templates
+- `DEFAULT_INPUT_FILE`: `data/Take-home.pptx` - Default PowerPoint file to process
+
+**OpenAI Settings:**
+
+- `DEFAULT_MODEL`: `gpt-4.1-mini-2025-04-14` - Default AI model
+- `DEFAULT_TEMPERATURE`: `0.1` - Controls AI response randomness (lower = more consistent)
+- `DEFAULT_MAX_TOKENS`: `4000` - Maximum tokens per API request
+
+**Output Settings:**
+
+- `DEFAULT_OUTPUT_SUFFIX`: `_sanitized` - Suffix added to sanitized files
+
+### Environment Variables
 
 - **OPENAI_API_KEY**: Your OpenAI API key (required)
-- **Input file**: Default is `data/Take-home.pptx`
-- **Prompts**: Customize AI behavior by editing files in `config/prompts/`
+
+  ```bash
+  export OPENAI_API_KEY="your-api-key-here"
+  ```
+
+### Customizing Configuration
+
+You can customize the tool's behavior by:
+
+1. **Modifying prompts**: Edit files in `config/prompts/`
+   - `system_prompt.txt`: Defines AI assistant behavior
+   - `user_prompt.txt`: Contains detection instructions
+
+2. **Using the Config class**: Access default settings in your code
+
+   ```python
+   from config import Config
+   
+   # Get default model
+   model = Config.DEFAULT_MODEL
+   
+   # Generate output filename
+   output_file = Config.get_output_filename("input.pptx")
+   
+   # Get API key
+   api_key = Config.get_openai_api_key()
+   ```
 
 ## 📖 Usage Examples
 
@@ -125,12 +177,3 @@ The sanitizer generates:
 
 - **Sanitized PowerPoint file**: Clean version with sensitive data removed
 - **JSON report**: Detailed log of all detections and changes made
-
-## 🔧 Development
-
-### Adding Custom Prompts
-
-1. Edit files in `config/prompts/`
-2. Modify `system_prompt.txt` for AI behavior
-3. Update `user_prompt.txt` for detection instructions
-

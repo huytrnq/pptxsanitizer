@@ -1,3 +1,0 @@
-python-pptx>=0.6.21
-openai>=1.0.0
-typing-extensions>=4.0.0

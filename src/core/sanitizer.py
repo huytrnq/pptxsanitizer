@@ -2,12 +2,20 @@
 PowerPoint Sanitizer
 ===================
 
-Complete sanitization system for PowerPoint presentations.
-Core functionalities:
-1. Shape Identification & Extraction (PPTXProcessor)
-2. AI-Enhanced Sensitive Data Detection (OpenAIAnalyzer)
-3. Content Replacement (PPTXProcessor)
-4. Output: Sanitized PPTX + Analysis Report
+A complete system for finding and removing sensitive information from PowerPoint files.
+
+The sanitizer works in 4 steps:
+1. Extract text and images from PowerPoint slides
+2. Use AI to detect sensitive information 
+3. Replace sensitive text with safe alternatives
+4. Generate a report of what was changed
+
+Supports detecting:
+- Personal information (names, emails, phones)
+- Financial data (account numbers, SSNs)
+- Business confidential information
+- Healthcare data
+- Custom sensitive patterns
 """
 
 import os
@@ -24,7 +32,13 @@ from ..models.sanitization_report import SanitizationReport
 
 
 class PowerPointSanitizer:
-    """Complete PowerPoint sanitization system."""
+    """
+    Sanitizes PowerPoint files by finding and replacing sensitive information.
+    
+    Uses AI to analyze slides and detect sensitive content like personal data,
+    financial information, and confidential business data. Creates a clean
+    version of the presentation with sensitive text replaced.
+    """
 
     def __init__(
         self,
@@ -33,7 +47,15 @@ class PowerPointSanitizer:
         prompts_dir: str = "config/prompts",
         model: str = "gpt-4.1-mini-2025-04-14"
     ):
-        """Initialize sanitizer with OpenAI API key and images directory."""
+        """
+        Initialize the sanitizer.
+        
+        Args:
+            openai_api_key: Your OpenAI API key
+            images_dir: Folder with slide images (default: "data/pngs")
+            prompts_dir: Folder with AI prompts (default: "config/prompts")
+            model: OpenAI model to use (default: "gpt-4.1-mini-2025-04-14")
+        """
         self.pptx_processor = PPTXProcessor()
         self.analyzer = OpenAIAnalyzer(api_key=openai_api_key, 
                                     prompts_dir=prompts_dir,
@@ -46,14 +68,14 @@ class PowerPointSanitizer:
         self, input_file: str, output_file: str = None
     ) -> SanitizationReport:
         """
-        Complete sanitization workflow.
+        Sanitize a PowerPoint file by removing sensitive information.
 
         Args:
-            input_file: Path to input PowerPoint file
-            output_file: Path for sanitized output file (optional)
+            input_file: Path to the PowerPoint file to sanitize
+            output_file: Where to save the clean file (optional)
 
         Returns:
-            SanitizationReport with results
+            SanitizationReport: Summary of what was found and changed
         """
         # Set default output file name
         if not output_file:
@@ -128,7 +150,16 @@ class PowerPointSanitizer:
         return report
 
     def _analyze_slide(self, slide_data: SlideData, image_path: Path):
-        """Analyze a single slide for sensitive content."""
+        """
+        Analyze one slide for sensitive content using AI.
+        
+        Args:
+            slide_data: Text and metadata from the slide
+            image_path: Path to the slide image file
+                
+        Returns:
+            List of detected sensitive information or empty list
+        """
         self.logger.info(f"Analyzing slide {slide_data.slide_number}")
         self.logger.debug(f"  Text content: {slide_data.text_content}")
         self.logger.debug(f"  Image path: {image_path}")
@@ -162,7 +193,15 @@ class PowerPointSanitizer:
     def _convert_detections_for_replacement(
         self, all_detections: Dict[int, Any]
     ) -> Dict[int, List[Detection]]:
-        """Convert OpenAI detections to format expected by PPTXProcessor."""
+        """
+        Convert AI detection results to format needed for text replacement.
+        
+        Args:
+            all_detections: Dictionary of detections from AI analysis
+                
+        Returns:
+            Dictionary of standardized Detection objects for replacement
+        """
         processed_detections = {}
 
         for slide_number, detections in all_detections.items():
@@ -196,7 +235,19 @@ class PowerPointSanitizer:
         all_detections: Dict[int, Any],
         total_replacements: int = 0,
     ) -> SanitizationReport:
-        """Generate sanitization report."""
+        """
+        Create a summary report of the sanitization process.
+        
+        Args:
+            input_file: Original PowerPoint file path
+            output_file: Sanitized PowerPoint file path
+            slides_data: Data from all slides
+            all_detections: All sensitive content found
+            total_replacements: Number of text replacements made
+                
+        Returns:
+            SanitizationReport: Summary with statistics and details
+        """
 
         # Count total detections and categorize
         total_detections = 0
@@ -228,7 +279,13 @@ class PowerPointSanitizer:
         )
 
     def _save_report(self, report: SanitizationReport, output_file: str):
-        """Save sanitization report as JSON."""
+        """
+        Save the report as a JSON file.
+        
+        Args:
+            report: The sanitization report to save
+            output_file: PowerPoint file path (JSON will have same name)
+        """
         report_file = Path(output_file).with_suffix(".json")
 
         # Convert report to serializable format
@@ -260,7 +317,12 @@ class PowerPointSanitizer:
         self.logger.info(f"Saved sanitization report to {report_file}")
 
     def print_summary(self, report: SanitizationReport):
-        """Print sanitization summary."""
+        """
+        Print a summary of sanitization results to the console.
+        
+        Args:
+            report: The sanitization report to display
+        """
         print(f"\n=== SANITIZATION SUMMARY ===")
         print(f"Original file: {report.original_file}")
         print(f"Sanitized file: {report.sanitized_file}")

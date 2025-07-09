@@ -3,9 +3,9 @@ PPTX Processor
 ==============
 
 Comprehensive class for PowerPoint file processing including:
-- Content extraction
-- Text replacement/sanitization
-- File manipulation
+- Content extraction from slides, text frames, tables, and charts
+- Text replacement and sanitization with formatting preservation
+- File manipulation and sanitized output generation
 """
 
 import logging
@@ -20,14 +20,41 @@ from ..utils.text_processing import TextProcessor
 
 
 class PPTXProcessor:
-    """Comprehensive PowerPoint processor with extraction and replacement capabilities."""
+    """
+    Comprehensive PowerPoint processor with extraction and replacement capabilities.
+    
+    This class provides methods to:
+    - Parse PowerPoint presentations and extract structured data
+    - Apply text replacements while preserving formatting
+    - Handle various PowerPoint elements (text frames, tables, charts)
+    - Generate sanitized versions of presentations
+    
+    Attributes:
+        logger: Logger instance for tracking operations
+        text_processor: TextProcessor instance for advanced text operations
+    """
 
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         self.text_processor = TextProcessor()
 
     def parse_presentation(self, file_path: str) -> List[SlideData]:
-        """Parse a PowerPoint file and return slide data."""
+        """
+        Parse a PowerPoint file and return structured slide data.
+        
+        Extracts content from all slides including text, images, charts, and tables.
+        Each slide is processed to create a SlideData object containing all relevant
+        information for analysis and sanitization.
+        
+        Args:
+            file_path (str): Path to the PowerPoint file to parse
+            
+        Returns:
+            List[SlideData]: List of SlideData objects, one for each slide
+            
+        Raises:
+            Exception: If the presentation cannot be loaded or parsed
+        """
         try:
             # Load presentation
             presentation = Presentation(file_path)
@@ -54,7 +81,19 @@ class PPTXProcessor:
             raise
 
     def _parse_slide(self, slide, slide_number: int) -> SlideData:
-        """Parse a single slide."""
+        """
+        Parse a single slide and extract all relevant content.
+        
+        Processes all shapes on the slide to extract text content, count elements,
+        and gather metadata. Creates a comprehensive SlideData object.
+        
+        Args:
+            slide: The python-pptx slide object to parse
+            slide_number (int): The 1-based slide number for identification
+            
+        Returns:
+            SlideData: Object containing all extracted slide information
+        """
         slide_data = SlideData(slide_number=slide_number)
 
         # Get slide title
@@ -71,7 +110,16 @@ class PPTXProcessor:
         return slide_data
 
     def _process_shape(self, shape, slide_data: SlideData):
-        """Process a single shape from the slide."""
+        """
+        Process a single shape from the slide and extract relevant data.
+        
+        Handles different types of shapes including text frames, images, charts,
+        and tables. Extracts text content and updates element counts in slide_data.
+        
+        Args:
+            shape: The python-pptx shape object to process
+            slide_data (SlideData): The slide data object to update with extracted information
+        """
         try:
             # Text content
             if shape.has_text_frame and shape.text_frame.text.strip():
@@ -91,7 +139,16 @@ class PPTXProcessor:
             self.logger.warning(f"Error processing shape: {e}")
 
     def _extract_table_text(self, table_shape, slide_data: SlideData):
-        """Extract text from table cells."""
+        """
+        Extract text from table cells and add to slide data.
+        
+        Iterates through all table rows and cells to extract text content,
+        adding non-empty text to the slide's text_content list.
+        
+        Args:
+            table_shape: The python-pptx table shape object
+            slide_data (SlideData): The slide data object to update with table text
+        """
         try:
             table = table_shape.table
             for row in table.rows:
@@ -104,7 +161,25 @@ class PPTXProcessor:
     def apply_replacements_to_file(
         self, input_file: str, output_file: str, all_detections: Dict[int, List]
     ) -> Dict[str, Any]:
-        """Apply text replacements to PowerPoint file and save sanitized version."""
+        """
+        Apply text replacements to PowerPoint file and save sanitized version.
+        
+        Loads the input presentation, applies all specified text replacements
+        while preserving formatting, and saves the result to the output file.
+        
+        Args:
+            input_file (str): Path to the input PowerPoint file
+            output_file (str): Path where the sanitized file will be saved
+            all_detections (Dict[int, List]): Dictionary mapping slide numbers to 
+                lists of Detection objects containing replacement information
+                
+        Returns:
+            Dict[str, Any]: Result dictionary containing:
+                - success (bool): Whether the operation succeeded
+                - total_replacements (int): Total number of replacements made
+                - replacements_by_slide (Dict[int, int]): Replacements per slide
+                - error (str, optional): Error message if operation failed
+        """
         try:
             # Load presentation
             presentation = Presentation(input_file)
@@ -152,7 +227,21 @@ class PPTXProcessor:
             }
 
     def _apply_replacements_to_slide(self, slide, detections: List[Detection]) -> int:
-        """Apply replacements to a single slide."""
+        """
+        Apply replacements to a single slide.
+        
+        Processes all detection objects for the slide, extracts replacement pairs,
+        and applies them to all shapes on the slide. Replacements are sorted by
+        length (longest first) to avoid partial replacement issues.
+        
+        Args:
+            slide: The python-pptx slide object to modify
+            detections (List[Detection]): List of detection objects containing
+                original text and replacement text
+                
+        Returns:
+            int: Total number of replacements made on this slide
+        """
         if not detections:
             return 0
 
@@ -190,7 +279,20 @@ class PPTXProcessor:
     def _apply_replacements_to_shape(
         self, shape, sorted_replacements: List[Tuple[str, str]]
     ) -> int:
-        """Apply replacements to a single shape."""
+        """
+        Apply replacements to a single shape.
+        
+        Handles different shape types (text frames, tables, charts) and applies
+        the specified text replacements while preserving formatting.
+        
+        Args:
+            shape: The python-pptx shape object to modify
+            sorted_replacements (List[Tuple[str, str]]): List of (original, replacement)
+                tuples sorted by length (longest first)
+                
+        Returns:
+            int: Number of replacements made in this shape
+        """
         try:
             replacements_made = 0
 
@@ -222,7 +324,25 @@ class PPTXProcessor:
     def _apply_replacements_to_text_frame(
         self, text_frame, sorted_replacements: List[Tuple[str, str]]
     ) -> int:
-        """Apply replacements to a text frame while preserving formatting."""
+        """
+        Apply replacements to a text frame while preserving formatting.
+        
+        Uses a two-stage approach:
+        1. Try run-by-run replacement to preserve detailed formatting
+        2. Fall back to full text replacement with basic formatting preservation
+        
+        The method handles complex formatting scenarios including font properties,
+        colors, and paragraph structure. It also supports fuzzy matching when
+        exact replacements are not found.
+        
+        Args:
+            text_frame: The python-pptx text frame object to modify
+            sorted_replacements (List[Tuple[str, str]]): List of (original, replacement)
+                tuples sorted by length (longest first)
+                
+        Returns:
+            int: Number of replacements made in this text frame
+        """
         if not text_frame or not text_frame.paragraphs:
             return 0
 
@@ -366,7 +486,20 @@ class PPTXProcessor:
     def _apply_replacements_to_table(
         self, table, sorted_replacements: List[Tuple[str, str]]
     ) -> int:
-        """Apply replacements to table cells."""
+        """
+        Apply replacements to table cells.
+        
+        Iterates through all table rows and cells, applying text replacements
+        to each cell's text frame while preserving table structure and formatting.
+        
+        Args:
+            table: The python-pptx table object to modify
+            sorted_replacements (List[Tuple[str, str]]): List of (original, replacement)
+                tuples sorted by length (longest first)
+                
+        Returns:
+            int: Total number of replacements made in all table cells
+        """
         replacements_made = 0
 
         for row in table.rows:
