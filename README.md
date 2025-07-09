@@ -1,108 +1,136 @@
-# PowerPoint Sanitization System
+# PowerPoint Sanitizer
 
-A modular system for detecting and sanitizing sensitive information in PowerPoint presentations using AI-enhanced detection capabilities.
+An AI-powered tool for automatically detecting and sanitizing sensitive information in PowerPoint presentations. This tool helps organizations safely share presentation materials by identifying and removing confidential data such as names, contacts, client-specific terms, and proprietary information.
 
-## Quick Start
+## 🚀 Features
 
-1. **Extract the provided zip file** to your working directory
+- **AI-Enhanced Detection**: Uses OpenAI's language models to intelligently identify sensitive content
+- **Sanitization**: Removes multiple types of sensitive information
+- **Detailed Reporting**: Generates comprehensive reports of all changes made
 
-2. **Install dependencies**:
+## 📋 Requirements
+
+- Python 3.12 or higher
+- OpenAI API key
+- PowerPoint files (.pptx format)
+
+### Dependencies
+
+- **python-pptx**: PowerPoint file manipulation
+- **openai**: AI-powered content analysis
+- **typing-extensions**: Enhanced type annotations
+- **requests**: HTTP requests handling
+
+
+## 🛠️ Installation
+
+1. **Install dependencies using uv:**
+
    ```bash
    uv sync
    ```
 
-3. **Run sanitization**:
+2. **Set up your OpenAI API key:**
+
    ```bash
-   # Basic mode (pattern-only)
-   python main.py test_presentation.pptx sanitized_output.pptx
+   # Windows PowerShell
+   $env:OPENAI_API_KEY = "your-api-key-here"
    
-   # With AI (requires OpenAI API key)
-   python main.py test_presentation.pptx sanitized_output.pptx --api-key "your-key-here"
+   # Linux/Mac
+   export OPENAI_API_KEY="your-api-key-here"
    ```
 
-## File Structure
+## 🚀 Quick Start
 
-```
-pptx_sanitizer/
-├── main.py                     # Main orchestrator
-├── pptx_handler.py            # PowerPoint file operations
-├── ai_processor.py            # AI content analysis
-├── pyproject.toml             # Project configuration and dependencies    
-└── README.md                  # This documentation
-```
+1. **Place your PowerPoint file** in the `data/` directory (default: `Take-home.pptx`)
 
-## Usage
+2. **Run the sanitizer:**
 
-### Basic Usage
-
-```bash
-python main.py input.pptx output_sanitized.pptx
-```
-
-### With OpenAI API Key
-
-```bash
-python main.py input.pptx output_sanitized.pptx --api-key "your-api-key"
-```
-
-### Pattern-Only Mode (No AI)
-
-```bash
-python main.py input.pptx output_sanitized.pptx --no-ai
-```
-
-### Advanced Options
-
-```bash
-python main.py input.pptx output_sanitized.pptx \
-    --api-key "your-api-key" \
-    --confidence 0.8 \
-    --report sanitization_report.json
-```
-
-### Command Line Arguments
-
-- `input_file`: Path to input PowerPoint file (.pptx)
-- `output_file`: Path for sanitized output file (.pptx)
-- `--api-key`: OpenAI API key for AI-enhanced detection
-- `--no-ai`: Disable AI detection (pattern-only mode)
-- `--confidence`: Confidence threshold for replacements (0.0-1.0, default: 0.7)
-- `--report`: Path for detailed sanitization report (JSON)
-
-## Configuration
-
-### OpenAI API Key
-
-Set your API key in one of these ways:
-
-1. **Environment variable**:
    ```bash
-   export OPENAI_API_KEY="your-key-here"
-   python main.py input.pptx output.pptx
+   python main.py
    ```
 
-2. **Command line**:
-   ```bash
-   python main.py input.pptx output.pptx --api-key "your-key-here"
-   ```
+3. **Find your sanitized file** in the `data/` directory with `_sanitized` suffix
 
-3. **Pattern-only mode** (no API key needed):
-   ```bash
-   python main.py input.pptx output.pptx --no-ai
-   ```
+## 📁 Project Structure
 
-## Detection Categories
+```text
+pptxsanitizer/
+├── main.py                         # Main code for running the sanitizer
+├── config/                         # Configuration files
+│   ├── prompts/                    # AI prompt templates
+│   │   ├── system_prompt.txt
+│   │   └── user_prompt.txt
+│   └── __init__.py
+├── src/                            # Source code
+│   ├── core/                       # Core functionality
+│   │   ├── sanitizer.py            # Main sanitization logic
+│   │   ├── pptx_processor.py       # PowerPoint file handling
+│   │   └── openai_analyzer.py      # AI analysis
+│   ├── models/                     # Data models
+│   │   ├── detection.py            # Detection result data structures
+│   │   ├── sanitization_report.py  # Report data structures
+│   │   └── slide_data.py           # Slide data structures
+│   └── utils/                      # Utility functions
+│       ├── log.py                  # Logging utilities
+│       └── text_processing.py      # Text processing helpers
+├── data/                           # Input/output files
+│   ├── pngs/                       # Slide images (if needed)
+│   └── *.pptx                      # PowerPoint files
+└── pyproject.toml                  # Project configuration
+```
 
-### Pattern-Based Detection (Always Active)
-- **Email addresses**: `user@domain.com` → `[EMAIL]`
-- **Phone numbers**: `+1-555-123-4567` → `[PHONE]`
-- **Company names**: `Acme Corporation` → `[CLIENT]`
-- **Personal names**: `John Smith` → `[NAME]`
-- **Financial data**: `$50.2 million` → `[AMOUNT]`
+## ⚙️ Configuration
 
-### AI-Enhanced Detection (When API Key Provided)
-- **Client identifiers**: Company-specific terms and branding
-- **Internal terminology**: Acronyms and internal processes
-- **Geographic locations**: Specific addresses and regional identifiers
-- **Product names**: Proprietary products and technologies
-- **Confidential information**: Classified or sensitive content
+The tool uses environment variables and configuration files:
+
+- **OPENAI_API_KEY**: Your OpenAI API key (required)
+- **Input file**: Default is `data/Take-home.pptx`
+- **Prompts**: Customize AI behavior by editing files in `config/prompts/`
+
+## 📖 Usage Examples
+
+```python
+from src.core.sanitizer import PowerPointSanitizer
+
+# Initialize sanitizer
+sanitizer = PowerPointSanitizer(
+   model="gpt-4.1-mini-2025-04-14",
+   openai_api_key="your-api-key",
+   images_dir="data/pngs",
+   prompts_dir="config/prompts"
+)
+
+# Sanitize presentation
+report = sanitizer.sanitize_presentation("input.pptx", "output_sanitized.pptx")
+
+# Print summary
+sanitizer.print_summary(report)
+```
+
+## 🛡️ Sanitization Guidelines
+
+The tool follows comprehensive sanitization guidelines to remove:
+
+1. **Names and Contacts**: Personal names, logos, emails, phone numbers
+2. **Client-Specific Terms**: Acronyms, internal terminology, unique taxonomies
+3. **Hidden Connections**: Subsidiaries, partners, vendors, suppliers
+4. **Market Context**: Market position, competitive landscape, geographical identifiers
+5. **Non-Public Insights**: Commercial strategies, cost structures, production data
+6. **Visuals**: Client-specific charts, hidden identifiers, proprietary designs (Not Supported Yet)
+
+## 📊 Output
+
+The sanitizer generates:
+
+- **Sanitized PowerPoint file**: Clean version with sensitive data removed
+- **JSON report**: Detailed log of all detections and changes made
+
+## 🔧 Development
+
+### Adding Custom Prompts
+
+1. Edit files in `config/prompts/`
+2. Modify `system_prompt.txt` for AI behavior
+3. Update `user_prompt.txt` for detection instructions
+

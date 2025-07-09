@@ -31,10 +31,13 @@ class PowerPointSanitizer:
         openai_api_key: str,
         images_dir: str = "data/pngs",
         prompts_dir: str = "config/prompts",
+        model: str = "gpt-4.1-mini-2025-04-14"
     ):
         """Initialize sanitizer with OpenAI API key and images directory."""
         self.pptx_processor = PPTXProcessor()
-        self.analyzer = OpenAIAnalyzer(api_key=openai_api_key, prompts_dir=prompts_dir)
+        self.analyzer = OpenAIAnalyzer(api_key=openai_api_key, 
+                                    prompts_dir=prompts_dir,
+                                    model=model)
         self.images_dir = Path(images_dir)
         self.logger = logging.getLogger(__name__)
 

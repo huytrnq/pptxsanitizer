@@ -35,6 +35,7 @@ def main():
     OPENAI_API_KEY = Config.get_openai_api_key()
     IMAGES_DIR = str(Config.IMAGES_DIR)
     PROMPTS_DIR = str(Config.PROMPTS_DIR)
+    MODEL = Config.DEFAULT_MODEL
 
     if not OPENAI_API_KEY:
         logger.error(
@@ -45,7 +46,10 @@ def main():
     try:
         # Initialize sanitizer
         sanitizer = PowerPointSanitizer(
-            openai_api_key=OPENAI_API_KEY, images_dir=IMAGES_DIR, prompts_dir=PROMPTS_DIR
+            model=MODEL,
+            openai_api_key=OPENAI_API_KEY, 
+            images_dir=IMAGES_DIR, 
+            prompts_dir=PROMPTS_DIR
         )
 
         # Generate output filename

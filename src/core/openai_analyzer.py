@@ -15,7 +15,7 @@ class OpenAIAnalyzer:
     """Analyzes text content for sensitive information using OpenAI with improved prompts."""
 
     def __init__(
-        self, api_key: str, model="gpt-4o-mini", prompts_dir="config/prompts"
+        self, api_key: str, model="gpt-4.1-mini-2025-04-14", prompts_dir="config/prompts"
     ):
         """Initialize with OpenAI API key and prompt directory."""
         if not api_key:
