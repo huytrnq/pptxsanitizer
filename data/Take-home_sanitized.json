@@ -1,43 +1,49 @@
 {
-  "original_file": "data/test.pptx",
+  "original_file": "data/Take-home.pptx",
   "sanitized_file": "data/Take-home_sanitized.pptx",
-  "total_slides": 4,
-  "total_detections": 28,
-  "total_replacements": 21,
+  "total_slides": 39,
+  "total_detections": 330,
+  "total_replacements": 323,
   "categories_summary": {
-    "company_name": 11,
-    "financial_data": 11,
-    "industry_regulation": 2,
-    "client_solution": 4
+    "company_name": 66,
+    "numerical_value": 122,
+    "financial_data": 40,
+    "legislation": 10,
+    "market_context": 20,
+    "client_specific_content": 34,
+    "visual_identifier": 9,
+    "acronym": 14,
+    "proprietary_methodology": 3,
+    "internal_process": 1,
+    "related_entities": 1,
+    "strategic_acronym": 1,
+    "methodology": 2,
+    "product_name": 4,
+    "service_name": 1,
+    "solution_name": 1,
+    "client-specific_content": 1
   },
   "detections_by_slide": {
     "1": [
       {
-        "original": "USPS Future Business Model",
-        "replacement": "[Client] Future Business Model",
+        "original": "USPS",
+        "replacement": "[Client]",
         "category": "company_name",
-        "reason": "Identifies the client organization directly by name.",
+        "reason": "Identifies specific client organization",
         "sensitivity_level": "HIGH"
       },
       {
         "original": "UNITED STATES POSTAL SERVICE",
         "replacement": "[Client]",
         "category": "company_name",
-        "reason": "Identifies the client organization directly by name.",
+        "reason": "Identifies specific client organization",
         "sensitivity_level": "HIGH"
       },
       {
         "original": "March 2, 2010",
         "replacement": "[Date]",
-        "category": "financial_data",
-        "reason": "Specific date could identify timing of strategies or initiatives related to the client.",
-        "sensitivity_level": "MEDIUM"
-      },
-      {
-        "original": "McKinsey&Company",
-        "replacement": "[Consulting Partner]",
-        "category": "company_name",
-        "reason": "Identifies the consulting partner involved in the project.",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing of strategies",
         "sensitivity_level": "MEDIUM"
       }
     ],
@@ -46,7 +52,7 @@
         "original": "McKinsey & Company",
         "replacement": "[Consulting Partner]",
         "category": "company_name",
-        "reason": "Identifies the consulting firm involved with the client.",
+        "reason": "Identifies specific consulting firm",
         "sensitivity_level": "HIGH"
       }
     ],
@@ -55,164 +61,2355 @@
         "original": "USPS",
         "replacement": "[Client]",
         "category": "company_name",
-        "reason": "Identifies the specific client organization involved.",
+        "reason": "Identifies specific client organization",
         "sensitivity_level": "HIGH"
       },
       {
         "original": "$ billions",
-        "replacement": "[Y]B",
+        "replacement": "[Y]B revenue",
         "category": "financial_data",
-        "reason": "Reveals financial scale that could identify the client.",
+        "reason": "Reveals financial scale of the client",
         "sensitivity_level": "HIGH"
       },
       {
-        "original": "Postal Act 2006",
+        "original": "Postal Act 2006 signed into law",
         "replacement": "[Industry Regulation]",
-        "category": "industry_regulation",
-        "reason": "Specific legislation that could narrow down the client's identity.",
+        "category": "legislation",
+        "reason": "Identifies specific legislation affecting the client",
         "sensitivity_level": "MEDIUM"
       },
       {
         "original": "RHB pre-funding, $ billions",
-        "replacement": "[X]B",
+        "replacement": "[X]B revenue",
         "category": "financial_data",
-        "reason": "Financial figure that could identify the scale of operations.",
+        "reason": "Reveals financial obligations of the client",
         "sensitivity_level": "HIGH"
       },
       {
-        "original": "E-diversion of First-Class Mail",
-        "replacement": "[Revenue Decline Factor]",
-        "category": "client_solution",
-        "reason": "Specific operational detail that could identify client strategies.",
-        "sensitivity_level": "MEDIUM"
-      },
-      {
-        "original": "Down-trading from First-Class to Standard Mail",
-        "replacement": "[Revenue Decline Factor]",
-        "category": "client_solution",
-        "reason": "Specific operational detail that could identify client strategies.",
-        "sensitivity_level": "MEDIUM"
-      },
-      {
-        "original": "Losses of advertising mail due to the recession",
-        "replacement": "[Revenue Decline Factor]",
-        "category": "client_solution",
-        "reason": "Specific operational detail that could identify client strategies.",
-        "sensitivity_level": "MEDIUM"
-      },
-      {
-        "original": "RHB pre-funding requirement introduced by the PAEA",
+        "original": "P.L. 109-435 (PAEA)",
         "replacement": "[Industry Regulation]",
-        "category": "industry_regulation",
-        "reason": "Specific regulation that could narrow down the client's identity.",
+        "category": "legislation",
+        "reason": "Identifies specific legislation affecting the client",
         "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2003-2006",
+        "replacement": "[Time Period]",
+        "category": "numerical_value",
+        "reason": "Identifies specific time frame for client strategy",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "8.4\t5.6\t1.41\t5.5",
+        "replacement": "[X] values",
+        "category": "numerical_value",
+        "reason": "Reveals specific financial metrics",
+        "sensitivity_level": "HIGH"
       },
       {
         "original": "No rate increase 2003-2006",
-        "replacement": "[Historical Context]",
-        "category": "client_solution",
-        "reason": "Specific historical detail that could identify client operations.",
+        "replacement": "[Client Strategy]",
+        "category": "market_context",
+        "reason": "Identifies specific client pricing strategy",
         "sensitivity_level": "MEDIUM"
       },
       {
-        "original": "SOURCE: USPS; P.L. 109-435 (PAEA)",
-        "replacement": "SOURCE: [Client]; [Regulatory Body]",
-        "category": "company_name",
-        "reason": "Identifies the client and specific regulatory body involved.",
-        "sensitivity_level": "HIGH"
-      },
-      {
-        "original": "McKinsey & Company",
-        "replacement": "[Consulting Partner]",
-        "category": "company_name",
-        "reason": "Identifies the consulting partner involved in the analysis.",
+        "original": "Revenue declines due to:",
+        "replacement": "[Market Context]",
+        "category": "market_context",
+        "reason": "Identifies specific reasons for client revenue decline",
         "sensitivity_level": "MEDIUM"
       }
     ],
     "4": [
       {
-        "original": "RHB pre-funding requirements",
-        "replacement": "[Funding Requirement]",
-        "category": "company_name",
-        "reason": "Identifies specific funding requirements related to a known entity.",
+        "original": "RHB pre-funding requirement",
+        "replacement": "[Client Solution]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific client funding requirement",
         "sensitivity_level": "HIGH"
-      },
-      {
-        "original": "RHB deferral",
-        "replacement": "[Funding Deferral]",
-        "category": "company_name",
-        "reason": "Identifies specific financial terms related to a known entity.",
-        "sensitivity_level": "HIGH"
-      },
-      {
-        "original": "FY2006 Net income",
-        "replacement": "[Fiscal Year] Net income",
-        "category": "financial_data",
-        "reason": "Identifies specific financial performance data for a particular year.",
-        "sensitivity_level": "MEDIUM"
-      },
-      {
-        "original": "FY2009 Net income",
-        "replacement": "[Fiscal Year] Net income",
-        "category": "financial_data",
-        "reason": "Identifies specific financial performance data for a particular year.",
-        "sensitivity_level": "MEDIUM"
       },
       {
         "original": "15.8",
         "replacement": "[X]",
-        "category": "financial_data",
-        "reason": "Specific financial figure that could identify scale.",
+        "category": "numerical_value",
+        "reason": "Identifies specific revenue decline amount",
         "sensitivity_level": "HIGH"
       },
       {
         "original": "5.5",
         "replacement": "[X]",
-        "category": "financial_data",
-        "reason": "Specific financial figure that could identify scale.",
-        "sensitivity_level": "HIGH"
-      },
-      {
-        "original": "12.6",
-        "replacement": "[X]",
-        "category": "financial_data",
-        "reason": "Specific financial figure that could identify scale.",
+        "category": "numerical_value",
+        "reason": "Identifies specific funding requirement amount",
         "sensitivity_level": "HIGH"
       },
       {
         "original": "4.0",
         "replacement": "[X]",
-        "category": "financial_data",
-        "reason": "Specific financial figure that could identify scale.",
+        "category": "numerical_value",
+        "reason": "Identifies specific net income amount",
         "sensitivity_level": "HIGH"
       },
       {
         "original": "-3.8",
         "replacement": "[X]",
-        "category": "financial_data",
-        "reason": "Specific financial figure that could identify scale.",
+        "category": "numerical_value",
+        "reason": "Identifies specific net income amount",
         "sensitivity_level": "HIGH"
       },
       {
-        "original": "Volume declines of 17%, driven by",
-        "replacement": "Volume declines of [X]%, driven by",
-        "category": "financial_data",
-        "reason": "Specific percentage that could identify client performance.",
-        "sensitivity_level": "MEDIUM"
+        "original": "12.6",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific cost savings amount",
+        "sensitivity_level": "HIGH"
       },
       {
         "original": "SOURCE: USPS 2006 Annual Report; USPS 2010 Budget",
-        "replacement": "SOURCE: [Client] 2006 Annual Report; [Client] 2010 Budget",
+        "replacement": "[Source Document]",
+        "category": "visual_identifier",
+        "reason": "Identifies specific source documents",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
         "category": "company_name",
-        "reason": "Identifies specific client documents and reports.",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Volume declines of 17%",
+        "replacement": "[X]% decline",
+        "category": "numerical_value",
+        "reason": "Identifies specific volume decline percentage",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "5": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Postal Accountability and Enhancement Act, 2006",
+        "replacement": "[Industry Regulation]",
+        "category": "legislation",
+        "reason": "Identifies specific legislation affecting client",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "USPS Strategic Transformation Plan",
+        "replacement": "[Client Solution]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific client document",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Retiree Health Benefits (RHB)",
+        "replacement": "[Proprietary Method]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific client-related benefits",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2005",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Specific year could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "240\n230\n220\n210\n200\n190\n180\n170\n160",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific numbers could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Billions of pieces",
+        "replacement": "[Volume Metric]",
+        "category": "numerical_value",
+        "reason": "Identifies specific volume metric",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "6": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "SOURCE: USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies a specific government agency",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "First-Class Mail",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies a specific service",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Standard Mail",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies a specific service",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Real GDP",
+        "replacement": "[Economic Metric]",
+        "category": "numerical_value",
+        "reason": "Represents a specific economic measure",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Cumulative increase from 1973, percent",
+        "replacement": "[Cumulative Increase]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2005\t2009",
+        "replacement": "[Year Range]",
+        "category": "numerical_value",
+        "reason": "Specific dates could identify timing",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "7": [
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies specific government entity",
         "sensitivity_level": "HIGH"
       },
       {
         "original": "McKinsey & Company",
         "replacement": "[Consulting Partner]",
         "category": "company_name",
-        "reason": "Identifies a specific consulting firm involved.",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "12%",
+        "replacement": "[X]%",
+        "category": "numerical_value",
+        "reason": "Specific percentage could reveal financial details",
         "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "$8.4B",
+        "replacement": "[X]B",
+        "category": "financial_data",
+        "reason": "Identifies specific financial figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$3B",
+        "replacement": "[X]B",
+        "category": "financial_data",
+        "reason": "Identifies specific financial figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$1.4B",
+        "replacement": "[X]B",
+        "category": "financial_data",
+        "reason": "Identifies specific financial figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$4B",
+        "replacement": "[X]B",
+        "category": "financial_data",
+        "reason": "Identifies specific financial figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "2006 – 2010",
+        "replacement": "[Year Range]",
+        "category": "numerical_value",
+        "reason": "Specific date range could identify timing",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "10.1",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "8.4",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "7.4",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "5.6",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "3.4",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1.4",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "5.5",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "3.4",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2.0",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "7.7",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1.6",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1.7",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1.8",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2.2",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific value could reveal financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "PAEA",
+        "replacement": "[Internal System]",
+        "category": "acronym",
+        "reason": "Identifies specific legislative framework",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "CSRS",
+        "replacement": "[Regulatory Body]",
+        "category": "acronym",
+        "reason": "Identifies specific regulatory framework",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "8": [
+      {
+        "original": "USPS workforce",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies specific client organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "FTEs1, Thousands",
+        "replacement": "[X] employees",
+        "category": "numerical_value",
+        "reason": "Reveals specific workforce capacity",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Pieces per FTE",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "917",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific workforce number",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "711",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific workforce number",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "227",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "231",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "234",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "243",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "251",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "258",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "261",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "262",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "249",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific performance metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2009",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Identifies specific year of data",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "SOURCE: USPS",
+        "replacement": "[Source]",
+        "category": "visual_identifier",
+        "reason": "Identifies specific data source",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "9": [
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies a specific government organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "74M (45%)",
+        "replacement": "[X]M (45%)",
+        "category": "numerical_value",
+        "reason": "Specific numerical value could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "12M",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific numerical value could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "79M (48%)",
+        "replacement": "[X]M (48%)",
+        "category": "numerical_value",
+        "reason": "Specific numerical value could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1,175",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific numerical value could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1,423",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific numerical value could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1,258",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific numerical value could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1,101",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific numerical value could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "55% of reductions have come from non-career and overtime",
+        "replacement": "[Generic Statement]",
+        "category": "visual_identifier",
+        "reason": "Specific operational detail could identify strategy",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "10": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Base case – minimal management actions",
+        "replacement": "[Proprietary Method]",
+        "category": "proprietary_methodology",
+        "reason": "Describes a specific internal strategy",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "11": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "USPS",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies specific postal service client",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "RHB pre-funding",
+        "replacement": "[Proprietary Method]",
+        "category": "proprietary_methodology",
+        "reason": "Specific financial strategy",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Fixed cost base",
+        "replacement": "[Financial Term]",
+        "category": "financial_data",
+        "reason": "Could reveal financial structure",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "some products (e.g., non-profit mail)",
+        "replacement": "[Product Line A]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific product offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Rising cost per",
+        "replacement": "[Numerical Value]",
+        "category": "numerical_value",
+        "reason": "Could indicate financial metrics",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Declining",
+        "replacement": "[Trend]",
+        "category": "market_context",
+        "reason": "Describes market trend",
+        "sensitivity_level": "LOW"
+      },
+      {
+        "original": "Price increases capped",
+        "replacement": "[Market Condition]",
+        "category": "market_context",
+        "reason": "Describes pricing condition",
+        "sensitivity_level": "LOW"
+      },
+      {
+        "original": "Price elasticities are in flux due to growing alternatives",
+        "replacement": "[Market Dynamics]",
+        "category": "market_context",
+        "reason": "Describes market dynamics",
+        "sensitivity_level": "LOW"
+      }
+    ],
+    "12": [
+      {
+        "original": "BCG",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "USPS Financial Forecasting Model",
+        "replacement": "[Proprietary Method]",
+        "category": "proprietary_methodology",
+        "reason": "Specific proprietary model name",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "-31 billion",
+        "replacement": "[X] billion",
+        "category": "numerical_value",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "+4 billion",
+        "replacement": "[X] billion",
+        "category": "numerical_value",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "<-1 billion",
+        "replacement": "[X] billion",
+        "category": "numerical_value",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "2009",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Identifies specific timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2020",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Identifies specific timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "First Class",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies a specific service segment",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Standard",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies a specific service segment",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "71%",
+        "replacement": "[Percentage]",
+        "category": "numerical_value",
+        "reason": "Represents a specific metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "21%",
+        "replacement": "[Percentage]",
+        "category": "numerical_value",
+        "reason": "Represents a specific metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "8%",
+        "replacement": "[Percentage]",
+        "category": "numerical_value",
+        "reason": "Represents a specific metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "(1.5%) per year",
+        "replacement": "[Percentage] per year",
+        "category": "numerical_value",
+        "reason": "Represents a specific metric",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "13": [
+      {
+        "original": "$68.1 B",
+        "replacement": "[Y]B",
+        "category": "financial_data",
+        "reason": "Identifies specific revenue figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$69.3 B",
+        "replacement": "[Y]B",
+        "category": "financial_data",
+        "reason": "Identifies specific revenue figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$16.8",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific financial figure",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "$3.8",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific financial figure",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "$11.8",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific financial figure",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "15%",
+        "replacement": "15%",
+        "category": "numerical_value",
+        "reason": "General business metric",
+        "sensitivity_level": "LOW"
+      },
+      {
+        "original": "37%",
+        "replacement": "37%",
+        "category": "numerical_value",
+        "reason": "General business metric",
+        "sensitivity_level": "LOW"
+      },
+      {
+        "original": "USPS Revenue",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies specific client organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting partner",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "2009 Revenue",
+        "replacement": "[X] Revenue",
+        "category": "numerical_value",
+        "reason": "Identifies specific year and revenue",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2020 Revenue",
+        "replacement": "[X] Revenue",
+        "category": "numerical_value",
+        "reason": "Identifies specific year and revenue",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "14": [
+      {
+        "original": "Post Offices",
+        "replacement": "[Client Subsidiary]",
+        "category": "company_name",
+        "reason": "Identifies specific client entity",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "(36,500 Post Offices, Stations and Branches1)",
+        "replacement": "([X] Post Offices, Stations and Branches)",
+        "category": "numerical_value",
+        "reason": "Reveals specific scale of operations",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "(~150 million delivery points2)",
+        "replacement": "([X] million delivery points)",
+        "category": "numerical_value",
+        "reason": "Reveals specific scale of operations",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "6-day delivery to every delivery point",
+        "replacement": "[Delivery Standard]",
+        "category": "internal_process",
+        "reason": "Specific operational detail",
+        "sensitivity_level": "LOW"
+      },
+      {
+        "original": "Sortation plants",
+        "replacement": "[Service Facility]",
+        "category": "company_name",
+        "reason": "Identifies specific client operations",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "(600 processing facilities)",
+        "replacement": "([X] processing facilities)",
+        "category": "numerical_value",
+        "reason": "Reveals specific scale of operations",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Transportation",
+        "replacement": "[Service Category]",
+        "category": "company_name",
+        "reason": "Identifies specific client operations",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "(220,000 vehicles)",
+        "replacement": "([X] vehicles)",
+        "category": "numerical_value",
+        "reason": "Reveals specific scale of operations",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "$2.6 billion in air transportation expenses",
+        "replacement": "[Y] billion in air transportation expenses",
+        "category": "financial_data",
+        "reason": "Reveals specific financial figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "SOURCE: USPS FY 2009 10-K",
+        "replacement": "[Source Document]",
+        "category": "visual_identifier",
+        "reason": "Identifies specific client document",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting partner",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "15": [
+      {
+        "original": "1,258",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific scale of operations",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "64",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific scale of operations",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "56",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific scale of operations",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "1,245",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Identifies specific scale of operations",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "2009",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Identifies specific timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2020",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Identifies specific timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1.5% per year drop in volume (27B fewer mail pieces)",
+        "replacement": "[X% drop in volume]",
+        "category": "financial_data",
+        "reason": "Reveals specific financial metrics",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Increase by 0.8% per year (~12 million new delivery points)",
+        "replacement": "[X% increase per year]",
+        "category": "financial_data",
+        "reason": "Reveals specific operational metrics",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Reduction of ~800 PO’s (2% of base)",
+        "replacement": "[Reduction of ~X PO’s]",
+        "category": "numerical_value",
+        "reason": "Identifies specific operational scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "SOURCE: USPS",
+        "replacement": "[Source]",
+        "category": "visual_identifier",
+        "reason": "Identifies specific organization",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "16": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "2020",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "4.7-5.2",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific range could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1.3-2.5",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific range could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2.0-4.0",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific range could identify scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Inflation (CPI at 1.9%)",
+        "replacement": "[Economic Indicator]",
+        "category": "market_context",
+        "reason": "Specific economic data could identify client context",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "17": [
+      {
+        "original": "RHB funding",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies specific client funding source",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "2017-2020",
+        "replacement": "[Year Range]",
+        "category": "numerical_value",
+        "reason": "Specific dates could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "10%",
+        "replacement": "10%",
+        "category": "numerical_value",
+        "reason": "Preserved percentage representing general business metric",
+        "sensitivity_level": "LOW"
+      },
+      {
+        "original": "$ Billions",
+        "replacement": "[Y]M budget",
+        "category": "financial_data",
+        "reason": "Financial figures could identify the client",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "PAEA",
+        "replacement": "[Industry Regulation]",
+        "category": "legislation",
+        "reason": "Specific regulation could identify client context",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting partner",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "SOURCE: OPM estimates; P.L. 109-435",
+        "replacement": "[Government Entity] estimates; [Legislation]",
+        "category": "related_entities",
+        "reason": "Identifies specific government source and legislation",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Base Case: Workforce cost projection",
+        "replacement": "[Strategic Initiative]: [Analytical Framework]",
+        "category": "strategic_acronym",
+        "reason": "Specific strategic context could identify client",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2009",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Specific dates could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "16",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific numerical value could identify scale",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "18": [
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies a specific government entity",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "2000",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2005",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2010",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2015",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2020",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "17",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Could identify scale or specific data point",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "$",
+        "replacement": "[Currency]",
+        "category": "financial_data",
+        "reason": "Indicates financial figures that could identify client",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "4% per year",
+        "replacement": "4% per year",
+        "category": "numerical_value",
+        "reason": "General business metric, preserve",
+        "sensitivity_level": "LOW"
+      },
+      {
+        "original": "2% per year",
+        "replacement": "2% per year",
+        "category": "numerical_value",
+        "reason": "General business metric, preserve",
+        "sensitivity_level": "LOW"
+      }
+    ],
+    "19": [
+      {
+        "original": "$33 billion",
+        "replacement": "[X]B revenue",
+        "category": "financial_data",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$238 billion",
+        "replacement": "[X]B revenue",
+        "category": "financial_data",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "2020",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "$15 B",
+        "replacement": "[Y]M budget",
+        "category": "financial_data",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Oct 2010",
+        "replacement": "[Month Year]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "$21 billion",
+        "replacement": "[X]B revenue",
+        "category": "financial_data",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "20": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Legislation to require provision",
+        "replacement": "[Industry Regulation]",
+        "category": "legislation",
+        "reason": "Refers to specific regulatory requirement",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Advertising Mail",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "health care cost inflation",
+        "replacement": "[Industry Term]",
+        "category": "market_context",
+        "reason": "Refers to specific industry issue",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Non-career employee increase",
+        "replacement": "[Employee Metric]",
+        "category": "numerical_value",
+        "reason": "Could indicate specific workforce changes",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Greater than expected volume declines due to:",
+        "replacement": "[Market Context]",
+        "category": "market_context",
+        "reason": "Indicates specific market conditions",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Further (“double-dip”) recession",
+        "replacement": "[Economic Condition]",
+        "category": "market_context",
+        "reason": "Refers to specific economic scenario",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Input cost inflation outpacing prices, especially in fuel costs",
+        "replacement": "[Cost Metric]",
+        "category": "numerical_value",
+        "reason": "Indicates specific cost pressures",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "21": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "20",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Could indicate a specific page or data point",
+        "sensitivity_level": "LOW"
+      }
+    ],
+    "22": [
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies a specific government agency",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "PRC",
+        "replacement": "[Regulatory Body]",
+        "category": "company_name",
+        "reason": "Identifies a specific regulatory body",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Actions Within Postal Service Control",
+        "replacement": "[Client Division]",
+        "category": "company_name",
+        "reason": "Identifies a specific division within USPS",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Fundamental Change",
+        "replacement": "[Strategic Initiative]",
+        "category": "acronym",
+        "reason": "Specific strategic term related to USPS",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Non-legislative",
+        "replacement": "[Industry Regulation]",
+        "category": "legislation",
+        "reason": "Refers to specific legislative context",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Legislative",
+        "replacement": "[Industry Regulation]",
+        "category": "legislation",
+        "reason": "Refers to specific legislative context",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "21",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific numerical value that could identify scale",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "23": [
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies a specific government agency",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$33B",
+        "replacement": "[X]B",
+        "category": "financial_data",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$238 billion",
+        "replacement": "[Y]B",
+        "category": "financial_data",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$15 billion",
+        "replacement": "[X] billion",
+        "category": "financial_data",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$115B",
+        "replacement": "[X]B",
+        "category": "financial_data",
+        "reason": "Identifies specific financial scale",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "FY2020",
+        "replacement": "[Fiscal Year]",
+        "category": "numerical_value",
+        "reason": "Identifies specific fiscal year",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Base Case",
+        "replacement": "[Strategic Initiative]",
+        "category": "acronym",
+        "reason": "Refers to a specific strategic scenario",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "24": [
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies a specific government organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Net annual income benefit (2020)",
+        "replacement": "[Financial Metric]",
+        "category": "financial_data",
+        "reason": "Reveals specific financial information",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "~$2B",
+        "replacement": "[X]B",
+        "category": "numerical_value",
+        "reason": "Identifies financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "~$10B",
+        "replacement": "[X]B",
+        "category": "numerical_value",
+        "reason": "Identifies financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "~$0.5B",
+        "replacement": "[X]B",
+        "category": "numerical_value",
+        "reason": "Identifies financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "~$5B",
+        "replacement": "[X]B",
+        "category": "numerical_value",
+        "reason": "Identifies financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "~$18B",
+        "replacement": "[X]B",
+        "category": "numerical_value",
+        "reason": "Identifies financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "~$123B",
+        "replacement": "[X]B",
+        "category": "numerical_value",
+        "reason": "Identifies financial scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "25": [
+      {
+        "original": "$2 billion",
+        "replacement": "[X]B revenue",
+        "category": "financial_data",
+        "reason": "Identifies financial scale of the client",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies specific government agency",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Passport growth",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service initiative",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "PO Boxes",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Consumer products",
+        "replacement": "[Product Line A]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific product category",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Priority Mail Flat Rate Box",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Commercial contracts",
+        "replacement": "[Client Division]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific business unit",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Parcel Select and Returns",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Product samples",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "First Class/Standard mail",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Small Business direct mail",
+        "replacement": "[Customer Segment A]",
+        "category": "market_context",
+        "reason": "Identifies specific customer segment",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "26": [
+      {
+        "original": "$10 billion",
+        "replacement": "[Y] billion",
+        "category": "financial_data",
+        "reason": "Identifies financial scale of the client",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "USPS",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Directly identifies the client organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Lean Six Sigma",
+        "replacement": "[Proprietary Method]",
+        "category": "methodology",
+        "reason": "Specific proprietary methodology used by the client",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Flats Sequencing System",
+        "replacement": "[Product Line A]",
+        "category": "product_name",
+        "reason": "Identifies specific product used by the client",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "91%",
+        "replacement": "91%",
+        "category": "numerical_value",
+        "reason": "General business metric, retains context",
+        "sensitivity_level": "LOW"
+      },
+      {
+        "original": "Total 2020 income impact",
+        "replacement": "[Financial Metric]",
+        "category": "financial_data",
+        "reason": "Could reveal specific financial performance",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "27": [
+      {
+        "original": "Postal Service",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies specific client organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$1B",
+        "replacement": "[X]B",
+        "category": "financial_data",
+        "reason": "Reveals financial scale of client operations",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "~ $0.5 billion",
+        "replacement": "[Y] billion",
+        "category": "financial_data",
+        "reason": "Reveals financial scale of client operations",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting partner",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "SOURCE: USPS National On-roll Complement",
+        "replacement": "[Source Document]",
+        "category": "visual_identifier",
+        "reason": "Identifies specific source of information",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "28": [
+      {
+        "original": "$15 Billion",
+        "replacement": "[X]B",
+        "category": "financial_data",
+        "reason": "Identifies specific financial loss amount",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$115 Billion",
+        "replacement": "[Y]B",
+        "category": "financial_data",
+        "reason": "Identifies cumulative financial loss amount",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$238B",
+        "replacement": "[Z]B",
+        "category": "financial_data",
+        "reason": "Identifies specific financial ceiling amount",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Actions within Postal Service control",
+        "replacement": "[Client Solution]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific client case",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Net annual loss forecast",
+        "replacement": "[Financial Metric]",
+        "category": "visual_identifier",
+        "reason": "Identifies specific financial metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Cumulative losses",
+        "replacement": "[Financial Metric]",
+        "category": "visual_identifier",
+        "reason": "Identifies specific financial metric",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "RHB reset",
+        "replacement": "[Internal Process]",
+        "category": "acronym",
+        "reason": "Identifies specific internal process",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Base Case",
+        "replacement": "[Scenario Analysis]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific scenario analysis",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Statutory debt",
+        "replacement": "[Regulatory Requirement]",
+        "category": "legislation",
+        "reason": "Identifies specific regulatory context",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "1 Per Annum: Compound annual growth rate, 2010 to 2020",
+        "replacement": "[Growth Metric]",
+        "category": "numerical_value",
+        "reason": "Identifies specific growth metric",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "29": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "($33B) FY2020",
+        "replacement": "[$Y]M budget",
+        "category": "financial_data",
+        "reason": "Reveals specific financial figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "($15B) FY2020",
+        "replacement": "[$Y]M budget",
+        "category": "financial_data",
+        "reason": "Reveals specific financial figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "$238 billion",
+        "replacement": "[$X] billion",
+        "category": "financial_data",
+        "reason": "Reveals specific financial figure",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Actions within Postal Service control reduce the 2020 annual loss to $15 billion, and the cumulative loss to $115 billion",
+        "replacement": "[Actions within Client control reduce the 2020 annual loss to $X billion, and the cumulative loss to $Y billion]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific financial outcomes",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "2005",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2009",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "2020",
+        "replacement": "[Year]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Fundamental Change",
+        "replacement": "[Proprietary Method]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific client methodology",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "30": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "PRC",
+        "replacement": "[Regulatory Body]",
+        "category": "acronym",
+        "reason": "Refers to a specific regulatory body",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Exigent price increases",
+        "replacement": "[Price Adjustment]",
+        "category": "financial_data",
+        "reason": "Specific financial term that could identify strategy",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Actions requiring legislative change",
+        "replacement": "[Actions Requiring Legislative Change]",
+        "category": "legislation",
+        "reason": "Refers to specific legislative actions",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Significant change in the retail network through a combination of increased access with partners and eventual franchising and/or closure of existing locations",
+        "replacement": "[Significant Change in Retail Network]",
+        "category": "market_context",
+        "reason": "Describes specific market strategy",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Eliminating/reducing subsidies non-profits",
+        "replacement": "[Subsidy Adjustments]",
+        "category": "market_context",
+        "reason": "Identifies specific financial adjustments",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "31": [
+      {
+        "original": "USPS",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies specific client organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Fundamental Change",
+        "replacement": "[Strategic Initiative]",
+        "category": "acronym",
+        "reason": "Specific strategic term related to client",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting partner",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Exigent price increase",
+        "replacement": "[Pricing Strategy]",
+        "category": "financial_data",
+        "reason": "Specific pricing strategy that could identify client",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Cover costs of un-profitable products",
+        "replacement": "[Cost Management Strategy]",
+        "category": "financial_data",
+        "reason": "Identifies financial strategy related to client",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "RHB",
+        "replacement": "[Internal System]",
+        "category": "acronym",
+        "reason": "Specific internal term related to client",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "USO subsidies",
+        "replacement": "[Funding Mechanism]",
+        "category": "financial_data",
+        "reason": "Identifies specific funding related to client",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Streamlined oversight",
+        "replacement": "[Oversight Strategy]",
+        "category": "financial_data",
+        "reason": "Identifies specific oversight strategy",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "32": [
+      {
+        "original": "USPS",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies specific client organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Accenture",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting partner",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting partner",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Banking",
+        "replacement": "[Industry Term]",
+        "category": "market_context",
+        "reason": "Specific industry context",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Insurance",
+        "replacement": "[Industry Term]",
+        "category": "market_context",
+        "reason": "Specific industry context",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "3PL",
+        "replacement": "[Industry Term]",
+        "category": "market_context",
+        "reason": "Specific industry context",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "truck advertising",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "hybrid mail",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "vending",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "~30+ revenue initiatives",
+        "replacement": "[X] revenue initiatives",
+        "category": "numerical_value",
+        "reason": "Specific numerical value indicating scale",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "low U.S. market feasibility",
+        "replacement": "[Key Market]",
+        "category": "market_context",
+        "reason": "Identifies specific market context",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Extremely low industry margins",
+        "replacement": "[Industry Term]",
+        "category": "market_context",
+        "reason": "Identifies specific industry context",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Hybrid mail including E2E, E2P and P2E",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "33": [
+      {
+        "original": "USPS",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies specific client organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting partner",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "R1 Products",
+        "replacement": "[Product Line A]",
+        "category": "product_name",
+        "reason": "Identifies specific product line",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "R2 products",
+        "replacement": "[Product Line B]",
+        "category": "product_name",
+        "reason": "Identifies specific product line",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "R3 Services",
+        "replacement": "[Service Offering]",
+        "category": "service_name",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "E2E and electronic postmark",
+        "replacement": "[Proprietary Method]",
+        "category": "methodology",
+        "reason": "Identifies proprietary methodology",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "E2P and P2E mail and print solutions",
+        "replacement": "[Solution Platform]",
+        "category": "solution_name",
+        "reason": "Identifies specific solution platform",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "32",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Could identify scale or timing",
+        "sensitivity_level": "LOW"
+      }
+    ],
+    "34": [
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "market_context",
+        "reason": "Identifies a specific government agency",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Exigent rate increase",
+        "replacement": "[Strategic Initiative]",
+        "category": "acronym",
+        "reason": "Specific pricing strategy terminology",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Cover costs",
+        "replacement": "[Financial Term]",
+        "category": "financial_data",
+        "reason": "Refers to financial strategy",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Price cap modification",
+        "replacement": "[Strategic Initiative]",
+        "category": "acronym",
+        "reason": "Specific pricing strategy terminology",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Periodicals",
+        "replacement": "[Product Line A]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific product type",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Nonprofit mail",
+        "replacement": "[Product Line A]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific product type",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Media and Library mail",
+        "replacement": "[Product Line A]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific product type",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "35": [
+      {
+        "original": "USPS",
+        "replacement": "[Client]",
+        "category": "company_name",
+        "reason": "Identifies specific client organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting partner",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "1-3 day to 2-5 days",
+        "replacement": "[X] to [Y] days",
+        "category": "numerical_value",
+        "reason": "Specific timing could reveal strategy details",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "3 or 5 days per week",
+        "replacement": "[X] days per week",
+        "category": "numerical_value",
+        "reason": "Specific frequency could reveal operational details",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "First-Class Mail",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies specific service offering",
+        "sensitivity_level": "HIGH"
+      }
+    ],
+    "36": [
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies a specific government organization",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "5% annual attrition rate",
+        "replacement": "[X]% annual attrition rate",
+        "category": "numerical_value",
+        "reason": "Reveals specific operational metrics",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Benefits",
+        "replacement": "[Service Offering]",
+        "category": "client-specific_content",
+        "reason": "Refers to specific client offerings",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "W2 requirements",
+        "replacement": "[Internal System]",
+        "category": "acronym",
+        "reason": "Identifies a specific internal process",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "W1 flexibility",
+        "replacement": "[Internal System]",
+        "category": "acronym",
+        "reason": "Identifies a specific internal process",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "37": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "G1 RHB",
+        "replacement": "[Internal System]",
+        "category": "acronym",
+        "reason": "Company-specific acronym",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "G2 USO subsidies",
+        "replacement": "[Service Offering]",
+        "category": "product_name",
+        "reason": "Identifies specific subsidy program",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "G3 Streamlined oversight",
+        "replacement": "[Strategic Initiative]",
+        "category": "acronym",
+        "reason": "Company-specific strategic term",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Universal Service Obligation",
+        "replacement": "[Industry Regulation]",
+        "category": "legislation",
+        "reason": "Identifies specific regulatory framework",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "federal agencies",
+        "replacement": "[Government Entity]",
+        "category": "market_context",
+        "reason": "Identifies specific government entities",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "private sector companies",
+        "replacement": "[Market Player]",
+        "category": "market_context",
+        "reason": "Identifies specific market participants",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "36",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Specific numerical value could identify scale",
+        "sensitivity_level": "LOW"
+      }
+    ],
+    "38": [
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies specific consulting firm",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "37",
+        "replacement": "[X]",
+        "category": "numerical_value",
+        "reason": "Could indicate specific data point or reference",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Short term requirements",
+        "replacement": "[Short term requirements]",
+        "category": "visual_identifier",
+        "reason": "Could reveal specific client needs or strategies",
+        "sensitivity_level": "MEDIUM"
+      }
+    ],
+    "39": [
+      {
+        "original": "USPS",
+        "replacement": "[Government Entity]",
+        "category": "company_name",
+        "reason": "Identifies a specific government agency",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "October 2010",
+        "replacement": "[Date]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "RHB restructuring by Congress",
+        "replacement": "[Proprietary Method]",
+        "category": "client_specific_content",
+        "reason": "Specific solution related to client strategy",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "Receive an increased debt limit",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies a specific financial strategy",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "September 2011",
+        "replacement": "[Date]",
+        "category": "numerical_value",
+        "reason": "Specific date could identify timing of strategies",
+        "sensitivity_level": "MEDIUM"
+      },
+      {
+        "original": "Exigent price increase",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies a specific pricing strategy",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "6 to 5 day delivery",
+        "replacement": "[Service Offering]",
+        "category": "client_specific_content",
+        "reason": "Identifies a specific operational strategy",
+        "sensitivity_level": "HIGH"
+      },
+      {
+        "original": "McKinsey & Company",
+        "replacement": "[Consulting Partner]",
+        "category": "company_name",
+        "reason": "Identifies a specific consulting firm",
+        "sensitivity_level": "HIGH"
       }
     ]
   }

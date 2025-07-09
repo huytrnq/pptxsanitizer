@@ -1,36 +1,22 @@
+"""OpenAI analyzer for sensitive content detection."""
+
 import json
 import logging
 import base64
 import os
 from typing import List, Dict, Any
-from pydantic import BaseModel
+
 from openai import OpenAI
 
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-
-class Detection(BaseModel):
-    """A single sensitive content detection with enhanced details."""
-
-    original: str
-    replacement: str
-    category: str
-    reason: str
-    sensitivity_level: str = "MEDIUM"  # HIGH/MEDIUM/LOW
-
-
-class DetectionResponse(BaseModel):
-    """Response containing multiple detections."""
-
-    detections: List[Detection]
+from ..models.detection import OpenAIDetection, DetectionResponse
 
 
 class OpenAIAnalyzer:
     """Analyzes text content for sensitive information using OpenAI with improved prompts."""
 
-    def __init__(self, api_key: str, model="gpt-4o-mini", prompts_dir="prompts"):
+    def __init__(
+        self, api_key: str, model="gpt-4o-mini", prompts_dir="config/prompts"
+    ):
         """Initialize with OpenAI API key and prompt directory."""
         if not api_key:
             raise ValueError("OpenAI API key is required")
@@ -77,7 +63,9 @@ class OpenAIAnalyzer:
     ) -> DetectionResponse:
         """Analyze a single slide's text content for sensitive information."""
         try:
-            self.logger.info("Analyzing slide with %d text elements", len(slide_text))
+            self.logger.info(
+                "Analyzing slide with %d text elements", len(slide_text)
+            )
 
             # Encode the image
             base64_image = self._encode_image(image_path)
@@ -134,7 +122,8 @@ class OpenAIAnalyzer:
 
                 self.logger.info(
                     f"Found {len(response_content.detections)} detections: "
-                    f"{high_risk} HIGH risk, {medium_risk} MEDIUM risk, {low_risk} LOW risk"
+                    f"{high_risk} HIGH risk, {medium_risk} MEDIUM risk, "
+                    f"{low_risk} LOW risk"
                 )
 
             return response_content
@@ -143,7 +132,9 @@ class OpenAIAnalyzer:
             self.logger.error("Error analyzing slide: %s", e)
             raise
 
-    def get_sanitization_summary(self, detections: List[Detection]) -> Dict[str, Any]:
+    def get_sanitization_summary(
+        self, detections: List[OpenAIDetection]
+    ) -> Dict[str, Any]:
         """Get a summary of sanitization results."""
         categories = {}
         sensitivity_levels = {}

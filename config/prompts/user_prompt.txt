@@ -1,0 +1,17 @@
+Please examine both the attached slide image and the Python-pptx Extracted Text List shown below.
+Identify every text fragment that must be sanitized under the system-level rules.
+
+For each fragment return a JSON object with:
+	•	"original"  – the exact substring to be replaced (case-preserved)
+	•	"replacement" – the generic substitute, enclosed in square brackets (e.g. "[Client]")
+	•	"category"    – concise label such as company_name, acronym, legislation, financial_data, market_context, numerical_value, visual_identifier, etc.
+	•	"reason"      – short statement (≤ 15 words) explaining why the fragment is sensitive
+	•	"sensitivity_level" – one of HIGH, MEDIUM, LOW
+  * HIGH  = uniquely identifies client or reveals non-public strategy/finances
+  * MEDIUM = could indirectly identify or disclose scale/timing
+  * LOW  = mildly sensitive but still requires masking
+
+Output: a single JSON array (no wrapper keys, no commentary). Keep list order independent of input order.
+
+Extracted Text List
+{extracted_text_list}

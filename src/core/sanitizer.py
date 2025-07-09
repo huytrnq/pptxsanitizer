@@ -14,28 +14,13 @@ import os
 import json
 import logging
 from typing import List, Dict, Any
-from dataclasses import dataclass, field
 from pathlib import Path
 
-from pptx_processor import PPTXProcessor, SlideData, Detection as PPTXDetection
-from openai_analyzer import OpenAIAnalyzer, Detection
-
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-
-@dataclass
-class SanitizationReport:
-    """Report of sanitization results."""
-
-    original_file: str
-    sanitized_file: str
-    total_slides: int
-    total_detections: int
-    total_replacements: int = 0
-    detections_by_slide: Dict[int, List[Detection]] = field(default_factory=dict)
-    categories_summary: Dict[str, int] = field(default_factory=dict)
+from .pptx_processor import PPTXProcessor
+from .openai_analyzer import OpenAIAnalyzer
+from ..models.slide_data import SlideData
+from ..models.detection import Detection
+from ..models.sanitization_report import SanitizationReport
 
 
 class PowerPointSanitizer:
@@ -45,20 +30,14 @@ class PowerPointSanitizer:
         self,
         openai_api_key: str,
         images_dir: str = "data/pngs",
-        use_streamlined_prompts: bool = True,
+        prompts_dir: str = "config/prompts",
     ):
         """Initialize sanitizer with OpenAI API key and images directory."""
-        self.pptx_processor = PPTXProcessor()  # Use PPTXProcessor instead of PPTXParser
-        self.analyzer = OpenAIAnalyzer(
-            api_key=openai_api_key
-        )
+        self.pptx_processor = PPTXProcessor()
+        self.analyzer = OpenAIAnalyzer(api_key=openai_api_key, prompts_dir=prompts_dir)
         self.images_dir = Path(images_dir)
         self.logger = logging.getLogger(__name__)
 
-        if use_streamlined_prompts:
-            self.logger.info(
-                "Using streamlined prompts for better efficiency and reduced redundancy"
-            )
 
     def sanitize_presentation(
         self, input_file: str, output_file: str = None
@@ -82,7 +61,7 @@ class PowerPointSanitizer:
 
         self.logger.info(f"Starting sanitization of {input_file}")
 
-        # 1. Shape Identification & Extraction (using PPTXProcessor)
+        # 1. Shape Identification & Extraction
         slides_data = self.pptx_processor.parse_presentation(input_file)
         self.logger.info(f"Extracted data from {len(slides_data)} slides")
 
@@ -108,7 +87,7 @@ class PowerPointSanitizer:
                 )
                 all_detections[slide.slide_number] = []
 
-        # 3. Content Replacement (using PPTXProcessor)
+        # 3. Content Replacement
         processed_detections = self._convert_detections_for_replacement(all_detections)
 
         # Apply all replacements to file
@@ -179,7 +158,7 @@ class PowerPointSanitizer:
 
     def _convert_detections_for_replacement(
         self, all_detections: Dict[int, Any]
-    ) -> Dict[int, List[PPTXDetection]]:
+    ) -> Dict[int, List[Detection]]:
         """Convert OpenAI detections to format expected by PPTXProcessor."""
         processed_detections = {}
 
@@ -189,10 +168,10 @@ class PowerPointSanitizer:
             else:
                 detection_list = detections if isinstance(detections, list) else []
 
-            # Convert to PPTXDetection format
+            # Convert to Detection format
             pptx_detections = []
             for detection in detection_list:
-                pptx_detection = PPTXDetection(
+                pptx_detection = Detection(
                     original=getattr(
                         detection, "original", getattr(detection, "text", "")
                     ),
@@ -240,7 +219,7 @@ class PowerPointSanitizer:
             sanitized_file=output_file,
             total_slides=len(slides_data),
             total_detections=total_detections,
-            total_replacements=total_replacements,  # Include actual replacement count
+            total_replacements=total_replacements,
             detections_by_slide=detections_by_slide,
             categories_summary=categories_summary,
         )
@@ -264,9 +243,7 @@ class PowerPointSanitizer:
                         "replacement": getattr(d, "replacement", ""),
                         "category": getattr(d, "category", "unknown"),
                         "reason": getattr(d, "reason", ""),
-                        "sensitivity_level": getattr(
-                            d, "sensitivity_level", "MEDIUM"
-                        ),  # Include sensitivity level
+                        "sensitivity_level": getattr(d, "sensitivity_level", "MEDIUM"),
                     }
                     for d in detections
                 ]
@@ -296,45 +273,3 @@ class PowerPointSanitizer:
         for slide_num, detections in report.detections_by_slide.items():
             if detections:
                 print(f"  Slide {slide_num}: {len(detections)} detections")
-
-    def debug_presentation(self, input_file: str):
-        """Debug method to examine presentation structure."""
-        self.pptx_processor.debug_presentation_structure(input_file)
-
-
-def main():
-    """Main sanitization workflow."""
-
-    # Configuration
-    INPUT_FILE = "data/test.pptx"
-    OUTPUT_FILE = "data/Take-home_sanitized.pptx"
-    OPENAI_API_KEY = "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"  # Replace with your actual API key
-    IMAGES_DIR = "data/pngs"
-
-    try:
-        # Initialize sanitizer
-        sanitizer = PowerPointSanitizer(
-            openai_api_key=OPENAI_API_KEY, images_dir=IMAGES_DIR
-        )
-
-        # Optional: Debug presentation structure first
-        print("=== DEBUGGING PRESENTATION STRUCTURE ===")
-        sanitizer.debug_presentation(INPUT_FILE)
-
-        # Run sanitization
-        report = sanitizer.sanitize_presentation(INPUT_FILE, OUTPUT_FILE)
-
-        # Print summary
-        sanitizer.print_summary(report)
-
-        print(f"\nSanitization completed successfully!")
-        print(f"Sanitized file: {report.sanitized_file}")
-        print(f"Report file: {Path(report.sanitized_file).with_suffix('.json')}")
-
-    except Exception as e:
-        logger.error(f"Sanitization failed: {e}")
-        raise
-
-
-if __name__ == "__main__":
-    main()
